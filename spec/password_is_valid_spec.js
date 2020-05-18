@@ -3,7 +3,7 @@ const { passwordIsValid } = require("../src/password_checker");
 describe("passwordIsValid", function () {
   it("should check if password exists", function () {
     expect(function () {
-      passwordIsValid(null);
+      passwordIsValid("");
     }).toThrow(new Error("password should exist"));
   });
   it("should check if password has more than 8 letters", function () {
@@ -13,7 +13,7 @@ describe("passwordIsValid", function () {
   });
   it("should check if password has at least one lowercase letter", function () {
     expect(function () {
-      passwordIsValid("SEIZEZZZ");
+      passwordIsValid("SEIZEZZZZ");
     }).toThrow(new Error("password should have at least one lowercase letter"));
   });
   it("should check if password has at least one upperercase letter", function () {

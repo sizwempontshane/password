@@ -1,15 +1,16 @@
-const lengthPassword = /.{9,}/;
+const longerThanEightChar = /.{9,}/;
 const lowercaseLetter = /[a-z]/g;
 const uppercaseLetter = /[A-Z]/g;
 const digit = /[0-9]/g;
 const specialChar = /\W/g;
 
 function passwordIsValid(password) {
-  if (password == null) {
+  if (password == "") {
     throw Error("password should exist");
   }
-  if (!password.match(lengthPassword)) {
+  if (!password.match(longerThanEightChar)) {
     throw Error("password length should be longer than 8 characters");
+    S;
   }
   if (!password.match(lowercaseLetter)) {
     throw Error("password should have at least one lowercase letter");
@@ -23,44 +24,47 @@ function passwordIsValid(password) {
   if (!password.match(specialChar)) {
     throw Error("password should have at least have one special character");
   }
+}
 
 passwordIsValid("Sizwe@13s");
 
 function passwordIsOk(password) {
-  var ok = 0;
+  var conditionsMet = 0;
 
-  if (password != null) {
-    ok = ok + 1;
+  let passwordIsOk = true;
+
+  if (password != "") {
+    conditionsMet = conditionsMet + 1;
   }
-  if (password.match(lengthPassword)) {
-    ok = ok + 1;
+  if (password.match(longerThanEightChar)) {
+    conditionsMet = conditionsMet + 1;
   }
   if (password.match(lowercaseLetter)) {
-    ok = ok + 1;
+    conditionsMet = conditionsMet + 1;
   }
-  if (password.match(uppercaseLetters)) {
-    ok = ok + 1;
+  if (password.match(uppercaseLetter)) {
+    conditionsMet = conditionsMet + 1;
   }
   if (password.match(digit)) {
-    ok = ok + 1;
+    conditionsMet = conditionsMet + 1;
   }
   if (password.match(specialChar)) {
-    ok = ok + 1;
+    conditionsMet = conditionsMet + 1;
   }
-  if (ok >= 3) {
-    return true;
+  if (conditionsMet < 3 || !password.match(longerThanEightChar)) {
+    passwordIsOk = false;
   }
-  var ok2 = 0;
-  if (password == null) {
-    ok2 = ok2 + 1;
-  }
-  if (!password.match(Length)) {
-    ok2 = ok2 + 1;
-  }
-  if ((ok2 = 2)) {
-    return true;
-  } 
+  return passwordIsOk;
+  // var conditionsMet2 = 0;
+  // if (password == null) {
+  //   conditionsMet2 = conditionsMet2 + 1;
+  // }
+  // if (!password.match(longerThanEightChar)) {
+  //   conditionsMet2 = conditionsMet2 + 1;
+  // }
+  // if ((conditionsMet2 = 2)) {
+  //   return true;
 }
-console.log(passwordIsOk("Sizwe@13"));
+console.log(passwordIsOk("Sizweseize@13"));
 
-module.exports = {passwordIsValid, passwordIsOk};
+module.exports = { passwordIsValid, passwordIsOk };
